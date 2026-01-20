@@ -186,17 +186,26 @@
       });
     }
       </script>
-  <script>
-    function trackSubscribe() {
-      if (localStorage.getItem('subscribed') === 'true') {
-        console.log("Already subscribed event fired, not sending again.");
-        return;
-      }
-      const eventId = 'subscribe_' + Date.now();
-      fbq('trackCustom', 'Subscribe', {}, { eventID: eventId });
-      localStorage.setItem('subscribed', 'true');
+<script>
+  function trackSubscribe() {
+    if (localStorage.getItem('subscribed') === 'true') {
+      console.log("Already subscribed event fired, not sending again.");
+      return;
     }
-  </script>
+
+    const eventId = 'subscribe_' + Date.now();
+
+    fbq('track', 'Subscribe', {
+      value: 0.00,
+      currency: 'USD'
+    }, {
+      eventID: eventId
+    });
+
+    localStorage.setItem('subscribed', 'true');
+  }
+</script>
+
 
 
 </body>
